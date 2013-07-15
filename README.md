@@ -45,7 +45,7 @@ Installation
     default:
         # ...
         extensions:
-            Behat\AnalysisExtension\Extension:
+            Behat\AnalysisExtension\Extension: ~
 ```
 
 Usage
