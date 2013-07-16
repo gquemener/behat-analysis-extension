@@ -1,0 +1,18 @@
+tools:
+    php_cs_fixer:
+        filter:
+            excluded_paths: ["spec/*"]
+    php_code_sniffer:
+        filter:
+            excluded_paths: ["spec/*"]
+        config:
+            standard: PSR1, PSR2
+    php_mess_detector:
+        filter:
+            excluded_paths: ["spec/*"]
+    php_analyzer:
+        filter:
+            excluded_paths: ["spec/*"]
+    sensiolabs_security_checker: true
+    php_loc:
+        excluded_dirs: ["spec/*"]
