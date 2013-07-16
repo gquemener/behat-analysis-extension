@@ -3,6 +3,7 @@ Behat analysis extension
 
 Introduction
 ------------
+![Why?](http://amiechristo.files.wordpress.com/2013/06/how-i-met-your-mother-barney-why.gif)
 
 Well, I always start asking "why?" when encoutering some crazy project.
 So, I will start by answering this trivial question.
