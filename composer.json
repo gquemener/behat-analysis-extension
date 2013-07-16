@@ -1,6 +1,13 @@
 {
     "name": "gquemener/behat-analyser-extension",
     "description": "Analysis tool for Behat",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gildas Quéméner",
+            "email": "gildas.quemener@gmail.com"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "behat/behat": "~2.4"
@@ -11,12 +18,8 @@
     "autoload": {
         "psr-0": {"": "src/"}
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Gildas Quéméner",
-            "email": "gildas.quemener@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "config": {
+        "bin-dir": "bin"
+    }
 }
