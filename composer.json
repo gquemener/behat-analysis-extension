@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.3.4",
         "behat/behat": "~2.4"
     },
     "require-dev": {
