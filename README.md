@@ -1,6 +1,9 @@
 Behat analysis extension
 ========================
 
+[![Latest Stable Version](https://poser.pugx.org/gquemener/behat-analysis-extension/v/stable.png)](https://packagist.org/packages/gquemener/behat-analysis-extension)
+[![Build Status](https://travis-ci.org/gquemener/behat-analysis-extension.png?branch=master)](https://travis-ci.org/gquemener/behat-analysis-extension)
+
 Introduction
 ------------
 ![Why?](http://amiechristo.files.wordpress.com/2013/06/how-i-met-your-mother-barney-why.gif)
