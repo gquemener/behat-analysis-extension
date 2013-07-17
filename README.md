@@ -30,7 +30,7 @@ Installation
     "require": {
         ...
 
-            "gquemener/behat-analysis-extension": "*"
+            "gquemener/behat-analysis-extension": "~1.0"
     }
 }
 ```
