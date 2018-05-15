@@ -9,14 +9,17 @@
         }
     ],
     "require": {
-        "php": ">=5.3.4",
-        "behat/behat": "~2.4"
+        "php": ">=5.3.3",
+        "behat/behat": "^3.4",
+        "symfony/console": "^4.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0@dev"
+        "phpspec/phpspec": "^4.2"
     },
     "autoload": {
-        "psr-0": {"": "src/"}
+        "psr-4": {
+            "GildasQ\\BehatAnalysisExtension\\": "src/"
+        }
     },
     "minimum-stability": "stable",
     "config": {

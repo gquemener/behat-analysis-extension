@@ -1,0 +1,9 @@
+default:
+    extensions:
+        GildasQ\BehatAnalysisExtension\AnalysisExtension: ~
+    suites:
+        default:
+            contexts:
+                - FileContext
+                - CommandContext
+                - AnalysisContext
