@@ -10,8 +10,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "behat/behat": "^3.4",
-        "symfony/console": "^4.0"
+        "behat/behat": "^3.4"
     },
     "require-dev": {
         "phpspec/phpspec": "^4.2"
