@@ -6,5 +6,5 @@ before_script:
     - composer install --prefer-dist --dev > /dev/null
 
 script:
-    - ./bin/phpspec run -fpretty
-    - ./bin/behat
+    - ./bin/phpspec run -fpretty --no-interaction
+    - ./bin/behat --no-interaction
