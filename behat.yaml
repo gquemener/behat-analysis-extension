@@ -4,6 +4,4 @@ default:
     suites:
         default:
             contexts:
-                - FileContext
-                - CommandContext
                 - AnalysisContext

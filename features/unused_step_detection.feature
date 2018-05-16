@@ -18,7 +18,7 @@ Feature: Detect unused steps
                 When I do something
                 Then I should see some output
         """
-        And the following "feature/Context/FeatureContext.php" file:
+        And the following "features/bootstrap/FeatureContext.php" file:
         """
         <?php
 
