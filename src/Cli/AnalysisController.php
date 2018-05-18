@@ -14,6 +14,8 @@ use Behat\Testwork\Environment\EnvironmentManager;
 use Behat\Behat\Definition\DefinitionRepository;
 use Behat\Testwork\Specification\SpecificationFinder;
 use Behat\Behat\Definition\DefinitionFinder;
+use GildasQ\BehatAnalysisExtension\Analyzer\RuntimeExercise;
+use GildasQ\BehatAnalysisExtension\Analyzer\SuitesAnalyzer;
 
 final class AnalysisController implements Controller
 {
@@ -26,15 +28,11 @@ final class AnalysisController implements Controller
     public function __construct(
         SuiteRegistry $registry,
         SpecificationFinder $specificationFinder,
-        EnvironmentManager $environmentManager,
-        DefinitionFinder $definitionFinder,
-        DefinitionRepository $definitionRepository
+        SuitesAnalyzer $analyzer
     ) {
         $this->specificationFinder = $specificationFinder;
         $this->registry = $registry;
-        $this->environmentManager = $environmentManager;
-        $this->definitionFinder = $definitionFinder;
-        $this->definitionRepository = $definitionRepository;
+        $this->analyzer = $analyzer;
     }
 
     /**
@@ -54,38 +52,29 @@ final class AnalysisController implements Controller
             return;
         }
 
-        $suites = $this->registry->getSuites();
-        $specs = $this->specificationFinder->findSuitesSpecifications($suites, $input->getArgument('paths'));
-        $count = [];
-        foreach ($specs as $spec) {
-            $suite = $spec->getSuite();
-            $environment = $this->environmentManager->buildEnvironment($suite);
-            foreach ($this->definitionRepository->getEnvironmentDefinitions($environment) as $definition) {
-                if (!isset($count[$definition->getPattern()])) {
-                    $count[$definition->getPattern()] = 0;
-                }
-            }
-            foreach ($spec as $feature) {
-                foreach ($feature->getScenarios() as $scenario) {
-                    foreach ($scenario->getSteps() as $step) {
-                        $result = $this->definitionFinder->findDefinition($environment, $feature, $step);
-                        if ($result->hasMatch()) {
-                            ++$count[$result->getMatchedDefinition()->getPattern()];
-                        }
-                    }
-                }
-            }
-        }
+        $specs = $this->findSpecifications($input);
+        $results = $this->analyzeSpecifications($specs);
 
-        $result = 0;
-        $unusedSteps = array_filter($count, function($value) {
-            return 0 === $value;
-        });
-        foreach (array_keys($unusedSteps) as $pattern) {
-            $output->writeln(sprintf('%s is never used.', $pattern));
-            $result = 1;
-        }
+        return $results->isPassed() ? 0 : 1;
+    }
 
-        return $result;
+    private function findSpecifications(InputInterface $input)
+    {
+        return $this->findSuitesSpecifications($this->getAvailableSuites(), $input->getArgument('paths'));
+    }
+
+    private function findSuitesSpecifications($suites, $locator)
+    {
+        return $this->specificationFinder->findSuitesSpecifications($suites, $locator);
+    }
+
+    private function getAvailableSuites()
+    {
+        return $this->registry->getSuites();
+    }
+
+    private function analyzeSpecifications(array $specifications)
+    {
+        return $this->analyzer->analyze($specifications);
     }
 }

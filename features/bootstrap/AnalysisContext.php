@@ -54,18 +54,28 @@ final class AnalysisContext implements Context
 
         $this->application->run($input, $this->output);
     }
+
     /**
      * @Then I should see the :path step as unused.
      */
     public function iShouldSeeTheStepAsUnused($path)
     {
         $output = $this->output->fetch();
-        $expected = sprintf('%s is never used', $path);
+        $expected = sprintf('"%s" is never used', $path);
 
         if (false === strpos($output, $expected)) {
             echo $output;
+
             throw new \RuntimeException(sprintf('Output does not contain "%s".', $expected));
         }
+    }
+
+    /**
+     * @Then I should not be here.
+     */
+    public function foo()
+    {
+        // TODO (2018-05-18 11:08 by Gildas): remove me
     }
 
     private function getPrefixedPath($filename)
